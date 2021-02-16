@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "valeriya",
+    "password": "346838",
+    "database": "todo-project",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "valeriya",
+    "password": "346838",
+    "database": "todo-project-test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "valeriya",
+    "password": "346838",
+    "database": "todo-project-prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
