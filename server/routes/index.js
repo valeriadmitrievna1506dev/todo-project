@@ -9,4 +9,5 @@ module.exports = (app) => {
 
   app.post('/items', todoItemController.create)
   app.get('/items', todoItemController.list)
+  app.get('/items/:id', todoItemController.retrieve)
 };
