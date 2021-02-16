@@ -11,4 +11,5 @@ module.exports = (app) => {
   app.get('/items', todoItemController.list)
   app.get('/items/:id', todoItemController.retrieve)
   app.put('/items/:id', todoItemController.update)
+  app.delete('/items/:id', todoItemController.destroy)
 };
