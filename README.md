@@ -11,6 +11,10 @@
   to start project run following command:<br />
   <b>npm install</b>
 </p>
+<p>
+  to start server run following command:<br />
+  <b>npm run server</b>
+</p>
 
 <p>
   <h3>Available methods</h3>
