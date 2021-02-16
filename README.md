@@ -13,7 +13,8 @@
 </p>
 <p>
   to start server run following command:<br />
-  <b>npm run server</b>
+  <b>npm run server</b><br><br>
+  <i>(<b>sudo npm run server</b> if not works)</i>
 </p>
 
 <p>
