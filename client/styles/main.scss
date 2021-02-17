@@ -60,15 +60,17 @@ h1 {
   list-style: none;
   padding: 0;
   li {
-    width: fit-content;
+    // width: fit-content;
     transition: 0.4s;
     display: grid;
+    justify-content: end;
     grid-template-columns: 1fr 50px 50px 50px;
     align-items: center;
     font-size: 35px;
     margin-bottom: 16px;
     span {
-      width: fit-content;
+      // width: fit-content;
+      text-align: right;
       margin-right: 16px;
     }
     button {
@@ -90,7 +92,7 @@ h1 {
       }
       &.editTask {
         path {
-          fill: #94eaf0;
+          fill: #ffbb3c;
         }
       }
     }

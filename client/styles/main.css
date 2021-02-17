@@ -69,13 +69,13 @@ h1 svg {
 }
 
 #tasksContent li {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   display: -ms-grid;
   display: grid;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
   -ms-grid-columns: 1fr 50px 50px 50px;
       grid-template-columns: 1fr 50px 50px 50px;
   -webkit-box-align: center;
@@ -86,9 +86,7 @@ h1 svg {
 }
 
 #tasksContent li span {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  text-align: right;
   margin-right: 16px;
 }
 
@@ -113,7 +111,7 @@ h1 svg {
 }
 
 #tasksContent li button.editTask path {
-  fill: #94eaf0;
+  fill: #ffbb3c;
 }
 
 #tasksContent li.complete span {
