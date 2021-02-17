@@ -2,6 +2,7 @@ const TodoItem = require('../models').TodoItem;
 
 module.exports = {
   create(req, res) {
+    if (!req.body) res.status(400).send(error)
     return TodoItem.create({
       text: req.body.text,
       done: false,
