@@ -6,7 +6,8 @@ module.exports = {
       text: req.body.text,
       done: false,
     })
-      .then((todoItem) => res.status(201).send(todoItem))
+      .then((todoItem) => {
+        res.status(201).send(todoItem)})
       .catch((error) => res.status(400).send(error));
   },
   list(req, res) {
