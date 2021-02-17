@@ -76,8 +76,8 @@ h1 svg {
   transition: 0.4s;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 50px 50px;
-      grid-template-columns: 1fr 50px 50px;
+  -ms-grid-columns: 1fr 50px 50px 50px;
+      grid-template-columns: 1fr 50px 50px 50px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -110,6 +110,10 @@ h1 svg {
 
 #tasksContent li button.deleteTask path {
   fill: #ac0000;
+}
+
+#tasksContent li button.editTask path {
+  fill: #94eaf0;
 }
 
 #tasksContent li.complete span {
