@@ -1,0 +1,107 @@
+body {
+  font-family: "Caveat";
+  background-image: linear-gradient(
+    120deg,
+    rgb(228, 129, 215),
+    rgb(36, 145, 145)
+  );
+  color: aliceblue;
+}
+
+h1 {
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  margin: 40px auto 30px auto;
+  width: fit-content;
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+#addTaskForm {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  max-width: 600px;
+  padding: 0 20px;
+  margin: 50px auto;
+  height: 50px;
+  input,
+  button {
+    border-radius: 0;
+    border: none;
+  }
+  input {
+    border-radius: 8px 0 0 8px;
+    padding: 12px;
+    font-size: 22px;
+  }
+  button {
+    border-radius: 0 8px 8px 0;
+    text-transform: uppercase;
+    font-style: 40px;
+    font-weight: bold;
+    background-image: linear-gradient(
+      120deg,
+      rgb(49, 173, 55),
+      rgb(20, 136, 26)
+    );
+    color: aliceblue;
+  }
+}
+
+#tasksContent {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  display: grid;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  li {
+    width: fit-content;
+    transition: 0.4s;
+    display: grid;
+    grid-template-columns: 1fr 50px 50px;
+    align-items: center;
+    font-size: 35px;
+    margin-bottom: 16px;
+    span {
+      width: fit-content;
+      margin-right: 16px;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      border: none;
+      background-color: transparent;
+      svg {
+        width: 100%;
+        height: 100%;
+        path {
+          height: 38px;
+        }
+      }
+      &.deleteTask {
+        path {
+          fill: #ac0000;
+        }
+      }
+    }
+
+    &.complete {
+      span {
+        text-decoration: line-through;
+      }
+      .doneTask {
+        svg {
+          opacity: 0.5;
+        }
+      }
+    }
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+}
