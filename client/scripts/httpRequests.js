@@ -1,13 +1,17 @@
 async function GetItems() {
   tasksPlace.innerHTML = '';
-  dynamicTasks = []
+  dynamicTasks = [];
   const response = await fetch('/items', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok === true) {
     const items = await response.json();
-    await createTasks(items);
+    if (items.length > 0) {
+      await createTasks(items);
+    } else {
+      tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
+    }
   }
 }
 

@@ -11,24 +11,19 @@ const createOneTask = (data) => {
   taskLi.innerHTML += editTaskButton;
   taskLi.innerHTML += deleteTaskButton;
 
-  //   tasksPlace.appendChild(taskLi);
-  dynamicTasks.push(taskLi);
+  tasksPlace.appendChild(taskLi);
 
   taskLi.addEventListener('click', () => {
     console.log(event.currentTarget.getAttribute('data-id'));
   });
-  return dynamicTasks;
+  
+  dynamicTasks.push(taskLi);
+  return taskLi;
 };
 
 const createTasks = (tasksArray) => {
-  console.log(tasksArray);
-  tasksArray.sort(function (a, b) {
-    return a.updatedAt - b.updatedAt; // for ascending order
-  });
-  console.log(tasksArray);
+  tasksPlace.innerHTML = '';
   tasksArray.forEach((task) => {
-    createOneTask(task).forEach((item) => {
-      tasksPlace.appendChild(item);
-    });
+    tasksPlace.appendChild(createOneTask(task));
   });
 };

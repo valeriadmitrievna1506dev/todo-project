@@ -59,6 +59,9 @@ h1 {
   justify-content: center;
   list-style: none;
   padding: 0;
+  > p {
+    font-size: 28px;
+  }
   li {
     // width: fit-content;
     transition: 0.4s;

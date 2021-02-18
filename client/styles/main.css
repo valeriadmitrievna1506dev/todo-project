@@ -68,6 +68,10 @@ h1 svg {
   padding: 0;
 }
 
+#tasksContent > p {
+  font-size: 28px;
+}
+
 #tasksContent li {
   -webkit-transition: 0.4s;
   transition: 0.4s;
