@@ -2,13 +2,14 @@ const TodoItem = require('../models').TodoItem;
 
 module.exports = {
   create(req, res) {
-    if (!req.body) res.status(400).send(error)
+    if (!req.body) res.status(400).send(error);
     return TodoItem.create({
       text: req.body.text,
       done: false,
     })
       .then((todoItem) => {
-        res.status(201).send(todoItem)})
+        res.status(201).send(todoItem);
+      })
       .catch((error) => res.status(400).send(error));
   },
   list(req, res) {
@@ -36,11 +37,13 @@ module.exports = {
             message: 'Item Not Found',
           });
         }
-
+        if (!req.body) res.status(400);
         return todoItem
           .update({
             text: req.body.text || todoItem.text,
-            done: req.body.done || todoItem.done,
+            done: req.body.done === undefined
+              ? todoItem.done 
+              : req.body.done,
           })
           .then((updatedTodoItem) => {
             res.status(200).send(updatedTodoItem);

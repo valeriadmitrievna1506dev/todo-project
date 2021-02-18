@@ -11,12 +11,29 @@ const createOneTask = (data) => {
   taskLi.innerHTML += editTaskButton;
   taskLi.innerHTML += deleteTaskButton;
 
-  tasksPlace.appendChild(taskLi);
+  // tasksPlace.appendChild(taskLi);
+  if (data.done) {
+    tasksPlace.appendChild(taskLi);
+  } else {
+    tasksPlace.prepend(taskLi);
+  }
 
-  taskLi.addEventListener('click', () => {
-    console.log(event.currentTarget.getAttribute('data-id'));
+  taskLi.querySelector('.deleteTask').addEventListener('click', () => {
+    deleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
   });
-  
+  taskLi.querySelector('.editTask').addEventListener('click', () => {
+    editTaskText(
+      event.currentTarget.parentElement.childNodes[0].innerText,
+      event.currentTarget.parentElement.getAttribute('data-id')
+    );
+  });
+  taskLi.querySelector('.doneTask').addEventListener('click', () => {
+    editTaskDone(
+      event.currentTarget.parentElement.classList,
+      event.currentTarget.parentElement.getAttribute('data-id')
+    );
+  });
+
   dynamicTasks.push(taskLi);
   return taskLi;
 };
@@ -24,6 +41,10 @@ const createOneTask = (data) => {
 const createTasks = (tasksArray) => {
   tasksPlace.innerHTML = '';
   tasksArray.forEach((task) => {
-    tasksPlace.appendChild(createOneTask(task));
+    if (task.done) {
+      tasksPlace.appendChild(createOneTask(task));
+    } else {
+      tasksPlace.prepend(createOneTask(task));
+    }
   });
 };
