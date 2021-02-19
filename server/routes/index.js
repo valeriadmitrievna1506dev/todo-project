@@ -7,9 +7,9 @@ module.exports = (app) => {
     })
   );
 
-  app.post('/items', todoItemController.create);
-  app.get('/items', todoItemController.list);
-  app.get('/items/:id', todoItemController.retrieve);
-  app.put('/items/:id', todoItemController.update);
-  app.delete('/items/:id', todoItemController.destroy);
+  app.post('/items', todoItemController.createItem.create);
+  app.get('/items', todoItemController.getItems.list);
+  app.get('/items/:id', todoItemController.getItemByID.retrieve);
+  app.put('/items/:id', todoItemController.updateItem.update);
+  app.delete('/items/:id', todoItemController.deleteItem.destroy);
 };

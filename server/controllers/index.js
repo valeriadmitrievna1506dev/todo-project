@@ -1,4 +1,4 @@
-const TodoItems = require('./todoitems');
+const TodoItems = require('./todoitems/todoitems');
 
 module.exports = {
   TodoItems,
