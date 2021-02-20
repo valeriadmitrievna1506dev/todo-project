@@ -1,6 +1,6 @@
 async function GetItems() {
   tasksPlace.innerHTML = await '';
-  dynamicTasks = [];
+  dynamicTasks = []
   const response = await fetch('/items', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -31,13 +31,13 @@ async function AddTask(itemText) {
   }
 }
 
-async function deleteTask(id) {
+async function deleteTask(filter, id) {
   const response = await fetch(`/items/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok === true) {
-    GetItems();
+    getFiltered(filter);
   }
 }
 
@@ -81,6 +81,7 @@ const editTaskDone = async (filter, class_list, id) => {
 
 const getFiltered = async (filter) => {
   tasksPlace.innerHTML = await '';
+  dynamicTasks = []
   const response = await fetch(`/items/${filter}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },

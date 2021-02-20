@@ -15,7 +15,13 @@ const createOneTask = (data) => {
   tasksPlace.prepend(taskLi);
 
   taskLi.querySelector('.deleteTask').addEventListener('click', () => {
-    deleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
+    [...filterPanel.querySelectorAll('input')].forEach((inp) => {
+      if (inp.checked)
+      deleteTask(
+          inp.id,
+          event.currentTarget.parentElement.getAttribute('data-id')
+        );
+    })
   });
   taskLi.querySelector('.editTask').addEventListener('click', () => {
     [...filterPanel.querySelectorAll('input')].forEach((inp) => {
