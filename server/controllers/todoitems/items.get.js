@@ -1,11 +1,14 @@
 const TodoItem = require('../../models').TodoItem;
 
 module.exports = {
-  list: async (req, res) => {
-    console.log('start');
+  listAll: async (req, res) => {
     try {
-      console.log('start try');
-      const todoItems = await TodoItem.findAll({ raw: true });
+      const todoItems = await TodoItem.findAll({ 
+        raw: true,
+        order: [
+          ['id']
+        ]
+       });
       res.status(200).send(todoItems);
     } catch (err) {
       console.log(err.message);

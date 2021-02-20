@@ -42,7 +42,7 @@ async function deleteTask(id) {
 }
 
 const editTaskText = async (text, id) => {
-  editModal.querySelector('input').value = text
+  editModal.querySelector('input').value = text;
   editModal.classList.add('visible');
   editModal.querySelector('form').onsubmit = () => {
     event.preventDefault();
@@ -55,14 +55,14 @@ const editTaskText = async (text, id) => {
           body: JSON.stringify({ text: taskText.trim() }),
         });
         if (response.ok) {
-          GetItems()
+          GetItems();
         }
         editModal.classList.remove('visible');
       })();
     } else {
       editModal.classList.remove('visible');
     }
-  }
+  };
 };
 
 const editTaskDone = async (class_list, id) => {
@@ -74,7 +74,23 @@ const editTaskDone = async (class_list, id) => {
       body: JSON.stringify({ done: !completed }),
     });
     if (response.ok) {
-      GetItems()
+      GetItems();
     }
   })();
+};
+
+const getFiltered = async (filter) => {
+  tasksPlace.innerHTML = await '';
+  const response = await fetch(`/items/${filter}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    const items = await response.json();
+    if (items.length > 0) {
+      await createTasks(items);
+    } else {
+      tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
+    }
+  }
 };

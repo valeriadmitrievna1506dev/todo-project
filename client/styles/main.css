@@ -189,4 +189,40 @@ h1 svg {
 #tasksContent li:last-of-type {
   margin: 0;
 }
+
+#Panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: #fff;
+}
+
+#Panel input {
+  display: none;
+}
+
+#Panel label {
+  text-align: center;
+  color: #000;
+  padding: 12px 22px;
+  font-size: 28px;
+  font-weight: bold;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#Panel label:hover {
+  background-color: rgba(228, 129, 215, 0.1);
+  color: #249191;
+}
+
+#Panel input[type='radio']:checked + label {
+  color: #e481d7;
+  background-color: rgba(36, 145, 145, 0.1);
+}
 /*# sourceMappingURL=main.css.map */

@@ -12,11 +12,7 @@ const createOneTask = (data) => {
   taskLi.innerHTML += deleteTaskButton;
 
   // tasksPlace.appendChild(taskLi);
-  if (data.done) {
-    tasksPlace.appendChild(taskLi);
-  } else {
-    tasksPlace.prepend(taskLi);
-  }
+  tasksPlace.prepend(taskLi);
 
   taskLi.querySelector('.deleteTask').addEventListener('click', () => {
     deleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
@@ -41,10 +37,6 @@ const createOneTask = (data) => {
 const createTasks = (tasksArray) => {
   tasksPlace.innerHTML = '';
   tasksArray.forEach((task) => {
-    if (task.done) {
-      tasksPlace.appendChild(createOneTask(task));
-    } else {
-      tasksPlace.prepend(createOneTask(task));
-    }
+    tasksPlace.prepend(createOneTask(task));
   });
 };

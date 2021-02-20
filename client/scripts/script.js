@@ -21,10 +21,18 @@ addForm.addEventListener('submit', () => {
   }
 });
 
-const editModal = document.querySelector('.edit_modal')
+const editModal = document.querySelector('.edit_modal');
 
 document.onclick = () => {
   if (event.target == editModal) {
-    editModal.classList.remove('visible')
+    editModal.classList.remove('visible');
   }
-}
+};
+
+const filterPanel = document.getElementById('Panel');
+filterPanel.querySelectorAll('label').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    if (btn.getAttribute('for') === 'all') return GetItems()
+    getFiltered(btn.getAttribute('for'))
+  });
+});
