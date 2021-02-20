@@ -18,16 +18,24 @@ const createOneTask = (data) => {
     deleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
   });
   taskLi.querySelector('.editTask').addEventListener('click', () => {
-    editTaskText(
-      event.currentTarget.parentElement.childNodes[0].innerText,
-      event.currentTarget.parentElement.getAttribute('data-id')
-    );
+    [...filterPanel.querySelectorAll('input')].forEach((inp) => {
+      if (inp.checked)
+        editTaskText(
+          inp.id,
+          event.currentTarget.parentElement.childNodes[0].innerText,
+          event.currentTarget.parentElement.getAttribute('data-id')
+        );
+    });
   });
   taskLi.querySelector('.doneTask').addEventListener('click', () => {
-    editTaskDone(
-      event.currentTarget.parentElement.classList,
-      event.currentTarget.parentElement.getAttribute('data-id')
-    );
+    [...filterPanel.querySelectorAll('input')].forEach((inp) => {
+      if (inp.checked)
+        editTaskDone(
+          inp.id,
+          event.currentTarget.parentElement.classList,
+          event.currentTarget.parentElement.getAttribute('data-id')
+        );
+    });
   });
 
   dynamicTasks.push(taskLi);

@@ -9,6 +9,7 @@ module.exports = (app) => {
 
   app.post('/items', todoItemController.createItem.create);
   app.get('/items', todoItemController.getItems.listAll);
+  app.get('/items/all', todoItemController.getItems.listAll);
   app.get('/items/done', todoItemController.filterItems.listDone)
   app.get('/items/undone', todoItemController.filterItems.listUndone)
   app.get('/items/date-up', todoItemController.filterItems.listDateUp)

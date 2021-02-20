@@ -32,7 +32,8 @@ document.onclick = () => {
 const filterPanel = document.getElementById('Panel');
 filterPanel.querySelectorAll('label').forEach((btn) => {
   btn.addEventListener('click', () => {
-    if (btn.getAttribute('for') === 'all') return GetItems()
-    getFiltered(btn.getAttribute('for'))
+    if (btn.getAttribute('for') === 'all') return GetItems();
+    getFiltered(btn.getAttribute('for'));
   });
 });
+

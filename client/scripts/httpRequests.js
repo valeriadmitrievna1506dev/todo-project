@@ -41,7 +41,7 @@ async function deleteTask(id) {
   }
 }
 
-const editTaskText = async (text, id) => {
+const editTaskText = async (filter, text, id) => {
   editModal.querySelector('input').value = text;
   editModal.classList.add('visible');
   editModal.querySelector('form').onsubmit = () => {
@@ -55,7 +55,7 @@ const editTaskText = async (text, id) => {
           body: JSON.stringify({ text: taskText.trim() }),
         });
         if (response.ok) {
-          GetItems();
+          getFiltered(filter);
         }
         editModal.classList.remove('visible');
       })();
@@ -65,7 +65,7 @@ const editTaskText = async (text, id) => {
   };
 };
 
-const editTaskDone = async (class_list, id) => {
+const editTaskDone = async (filter, class_list, id) => {
   let completed = class_list.value.includes('complete');
   (async function editTask() {
     const response = await fetch(`/items/${id}`, {
@@ -74,7 +74,7 @@ const editTaskDone = async (class_list, id) => {
       body: JSON.stringify({ done: !completed }),
     });
     if (response.ok) {
-      GetItems();
+      getFiltered(filter);
     }
   })();
 };
