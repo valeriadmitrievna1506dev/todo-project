@@ -1,20 +1,23 @@
-async function GetItems() {
+async function GetItems(order, completeness) {
   tasksPlace.innerHTML = await '';
   dynamicTasks = []
   const response = await fetch('/items?' + new URLSearchParams({
-    foo: 'value'
+    order: order,
+    done: completeness
   }), {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
-  if (response.ok === true) {
+  console.log(response);
+  if (response.ok) {
     const items = await response.json();
+    console.log(items);
     if (items.length > 0) {
       await createTasks(items);
     } else {
       tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
     }
-  }
+  } else console.log('response not ok');
 }
 
 async function AddTask(itemText) {
@@ -39,7 +42,7 @@ async function deleteTask(filter, id) {
     headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok === true) {
-    getFiltered(filter);
+    checkFilters()
   }
 }
 
@@ -57,7 +60,8 @@ const editTaskText = async (filter, text, id) => {
           body: JSON.stringify({ text: taskText.trim() }),
         });
         if (response.ok) {
-          getFiltered(filter);
+          console.log('check filters');
+          checkFilters()
         }
         editModal.classList.remove('visible');
       })();
@@ -76,24 +80,8 @@ const editTaskDone = async (filter, class_list, id) => {
       body: JSON.stringify({ done: !completed }),
     });
     if (response.ok) {
-      getFiltered(filter);
+      checkFilters()
     }
   })();
 };
 
-const getFiltered = async (filter) => {
-  tasksPlace.innerHTML = await '';
-  dynamicTasks = []
-  const response = await fetch(`/items/${filter}`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
-  if (response.ok === true) {
-    const items = await response.json();
-    if (items.length > 0) {
-      await createTasks(items);
-    } else {
-      tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
-    }
-  }
-};

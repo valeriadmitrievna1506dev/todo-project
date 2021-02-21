@@ -54,3 +54,14 @@ const createTasks = (tasksArray) => {
     tasksPlace.prepend(createOneTask(task));
   });
 };
+
+const checkFilters = () => {
+  let request = {};
+  [...orderButtons].forEach((btnOrder) => {
+    if (btnOrder.checked) request.order = btnOrder.id;
+  });
+  [...completenessButtons].forEach((btnCompleteness) => {
+    if (btnCompleteness.checked) request.done = btnCompleteness.id;
+  });
+  GetItems(request.order, request.done);
+}
