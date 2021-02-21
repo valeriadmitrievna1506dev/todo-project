@@ -1,7 +1,9 @@
 async function GetItems() {
   tasksPlace.innerHTML = await '';
   dynamicTasks = []
-  const response = await fetch('/items', {
+  const response = await fetch('/items?' + new URLSearchParams({
+    foo: 'value'
+  }), {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
