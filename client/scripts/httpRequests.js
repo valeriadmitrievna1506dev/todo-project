@@ -8,7 +8,6 @@ async function GetItems(order, completeness) {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
-  console.log(response);
   if (response.ok) {
     const items = await response.json();
     console.log(items);
@@ -32,7 +31,7 @@ async function AddTask(itemText) {
     if (dynamicTasks.length === 0) {
       tasksPlace.innerHTML = await '';
     }
-    createOneTask(item);
+    checkFilters()
   }
 }
 
