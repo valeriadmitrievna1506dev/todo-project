@@ -12,7 +12,6 @@ module.exports = (app) => {
       path.resolve('server/controllers/todoitems'),
       { nodir: true, }
       );
-    let controllersCount = 0;
     paths.forEach((file) => {
       if (
         path.basename(file.path)[0] === '_' ||
@@ -20,10 +19,7 @@ module.exports = (app) => {
       )
         return;
       app.use('/items', require(file.path));
-      controllersCount++;
     });
   }
-
   useControllersTodoItems();
-
 };
