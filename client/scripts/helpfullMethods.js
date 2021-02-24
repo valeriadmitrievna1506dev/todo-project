@@ -63,5 +63,6 @@ const checkFilters = () => {
   [...completenessButtons].forEach((btnCompleteness) => {
     if (btnCompleteness.checked) request.done = btnCompleteness.id;
   });
+  console.log(request);
   GetItems(request.order, request.done);
 }
