@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.resolve('client/')));
 
 require('./server/routes')(app);
-app.get('*', (req, res) =>
-  res.status(200).send({
-    message: 'Welcome to the Todo Application',
-  })
-);
+// app.get('*', (req, res) =>
+//   res.status(200).send({
+//     message: 'Welcome to the Todo Application',
+//   })
+// );
 
 module.exports = app;

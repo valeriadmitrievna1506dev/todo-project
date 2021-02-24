@@ -7,9 +7,13 @@ module.exports = (app) => {
     })
   )
 
-  app.post('/items', todoItemController.createItem.create);
-  app.get('/items', todoItemController.getItems.list);
-  app.get('/items/:id', todoItemController.getItemByID.retrieve);
-  app.put('/items/:id', todoItemController.updateItem.update);
-  app.delete('/items/:id', todoItemController.deleteItem.destroy);
+  const getItems = require('./../controllers/todoitems/items.get')
+  const addItem = require('./../controllers/todoitems/items.post')
+
+  app.use('/items',
+                    getItems,
+                    addItem);
+  // app.get('/items/:id', todoItemController.getItemByID.retrieve);
+  // app.put('/items/:id', todoItemController.updateItem.update);
+  // app.delete('/items/:id', todoItemController.deleteItem.destroy);
 };
