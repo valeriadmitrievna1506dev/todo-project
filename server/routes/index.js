@@ -1,5 +1,3 @@
-const todoItemController = require('../controllers').TodoItems;
-
 module.exports = (app) => {
   app.get('/', (req, res) =>
     res.status(200).send({
@@ -8,12 +6,15 @@ module.exports = (app) => {
   )
 
   const getItems = require('./../controllers/todoitems/items.get')
-  const addItem = require('./../controllers/todoitems/items.post')
+  const addItem = require('../controllers/todoitems/item.post')
+  const editItem = require('../controllers/todoitems/item.put')
+  const getItem = require('../controllers/todoitems/item.get')
+  const deleteItem = require('../controllers/todoitems/item.delete')
 
   app.use('/items',
-                    getItems,
-                    addItem);
-  // app.get('/items/:id', todoItemController.getItemByID.retrieve);
-  // app.put('/items/:id', todoItemController.updateItem.update);
-  // app.delete('/items/:id', todoItemController.deleteItem.destroy);
+    getItems,
+    addItem,
+    editItem,
+    getItem,
+    deleteItem);
 };
