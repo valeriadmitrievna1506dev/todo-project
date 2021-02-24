@@ -3,18 +3,29 @@ module.exports = (app) => {
     res.status(200).send({
       message: 'Welcome to the Todo-APP',
     })
-  )
+  );
 
-  const getItems = require('./../controllers/todoitems/items.get')
-  const addItem = require('../controllers/todoitems/item.post')
-  const editItem = require('../controllers/todoitems/item.put')
-  const getItem = require('../controllers/todoitems/item.get')
-  const deleteItem = require('../controllers/todoitems/item.delete')
+  const klawSync = require('klaw-sync');
+  const path = require('path');
+  async function useControllersTodoItems() {
+    const paths = klawSync(
+      path.resolve('server/controllers/todoitems'),
+      { nodir: true, }
+      );
+    let controllersCount = 0;
+    paths.forEach((file) => {
+      if (
+        path.basename(file.path)[0] === '_' ||
+        path.basename(file.path)[0] === '.'
+      )
+        return;
+      app.use('/items', require(file.path));
+      controllersCount++;
+    });
 
-  app.use('/items',
-    getItems,
-    addItem,
-    editItem,
-    getItem,
-    deleteItem);
+    console.info(`Total controllers: ${controllersCount}`);
+  }
+
+  useControllersTodoItems();
+
 };
