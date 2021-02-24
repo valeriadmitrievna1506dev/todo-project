@@ -22,8 +22,6 @@ module.exports = (app) => {
       app.use('/items', require(file.path));
       controllersCount++;
     });
-
-    console.info(`Total controllers: ${controllersCount}`);
   }
 
   useControllersTodoItems();
