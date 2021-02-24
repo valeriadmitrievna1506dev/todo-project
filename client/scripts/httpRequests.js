@@ -1,18 +1,19 @@
 async function GetItems(order, completeness) {
   try {
+    let queryString = {
+      order: order,
+    };
+    if (completeness != 'all') queryString.done = completeness;
+
     tasksPlace.innerHTML = await '';
     dynamicTasks = [];
-    const response = await fetch(
-      '/items?' +
-        new URLSearchParams({
-          order: order,
-          done: completeness,
-        }),
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    const response = await fetch('/items?' + new URLSearchParams(queryString), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      },
+    });
     if (response.ok) {
       const items = await response.json();
       if (items.length > 0) {
