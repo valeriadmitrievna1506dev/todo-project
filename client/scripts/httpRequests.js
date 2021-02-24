@@ -10,13 +10,12 @@ async function GetItems(order, completeness) {
   });
   if (response.ok) {
     const items = await response.json();
-    console.log(items);
     if (items.length > 0) {
       await createTasks(items);
     } else {
       tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
     }
-  } else console.log('response not ok');
+  }
 }
 
 async function AddTask(itemText) {
@@ -59,7 +58,6 @@ const editTaskText = async (filter, text, id) => {
           body: JSON.stringify({ text: taskText.trim() }),
         });
         if (response.ok) {
-          console.log('check filters');
           checkFilters()
         }
         editModal.classList.remove('visible');

@@ -1,8 +1,8 @@
-const TodoItem = require("../../models").TodoItem;
+const TodoItem = require('../../models').TodoItem;
 
 module.exports = {
   list: async (req, res) => {
-    if (req.query.done === "all") return listAll(req, res);
+    if (req.query.done === 'all') return listAll(req, res);
     return listVariative(req, res);
   },
 };
@@ -11,22 +11,18 @@ const listAll = async (req, res) => {
   try {
     let reqOrder;
     switch (req.query.order) {
-      case "normal": {
-        reqOrder = [["updatedAt"]];
+      case 'normal': {
+        reqOrder = [['createdAt']];
         break;
       }
-      case "reverse": {
-        reqOrder = [["updatedAt", "DESC"]];
-        break;
-      }
-      case undefined: {
-        return res.status(400).send({
-          message: "Not Found Date Order Param",
-        });
+      case 'reverse': {
+        reqOrder = [['createdAt', 'DESC']];
         break;
       }
       default:
-        break;
+        return res.status(400).send({
+          message: 'Not Found Date Order Param',
+        });
     }
     const todoItems = await TodoItem.findAll({
       raw: true,
@@ -34,8 +30,7 @@ const listAll = async (req, res) => {
     });
     res.status(200).send(todoItems);
   } catch (err) {
-    console.log(err.message);
-    res.status(400).send(err);
+    res.status(400).send(err.message);
   }
 };
 
@@ -43,17 +38,17 @@ const listVariative = async (req, res) => {
   try {
     let reqOrder;
     switch (req.query.order) {
-      case "normal": {
-        reqOrder = [["updatedAt"]];
+      case 'normal': {
+        reqOrder = [['createdAt']];
         break;
       }
-      case "reverse": {
-        reqOrder = [["updatedAt", "DESC"]];
+      case 'reverse': {
+        reqOrder = [['createdAt', 'DESC']];
         break;
       }
       case undefined: {
         return res.status(400).send({
-          message: "Not Found Date Order Param",
+          message: 'Not Found Date Order Param',
         });
         break;
       }
@@ -62,17 +57,17 @@ const listVariative = async (req, res) => {
     }
     let doneParam;
     switch (req.query.done) {
-      case "done": {
+      case 'done': {
         doneParam = { done: true };
         break;
       }
-      case "undone": {
+      case 'undone': {
         doneParam = { done: false };
         break;
       }
       case undefined: {
         return res.status(400).send({
-          message: "Not Found Completeness Parameter",
+          message: 'Not Found Completeness Parameter',
         });
         break;
       }
@@ -86,7 +81,6 @@ const listVariative = async (req, res) => {
     });
     res.status(200).send(todoItems);
   } catch (err) {
-    console.log(err.message);
-    res.status(400).send(err);
+    res.status(400).send(err.message);
   }
 };
