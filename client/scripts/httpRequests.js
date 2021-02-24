@@ -34,7 +34,7 @@ async function AddTask(itemText) {
   }
 }
 
-async function deleteTask(filter, id) {
+async function deleteTask(id) {
   const response = await fetch(`/items/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
@@ -44,7 +44,7 @@ async function deleteTask(filter, id) {
   }
 }
 
-const editTaskText = async (filter, text, id) => {
+const editTaskText = async (text, id) => {
   editModal.querySelector('input').value = text;
   editModal.classList.add('visible');
   editModal.querySelector('form').onsubmit = () => {
@@ -68,7 +68,7 @@ const editTaskText = async (filter, text, id) => {
   };
 };
 
-const editTaskDone = async (filter, class_list, id) => {
+const editTaskDone = async (class_list, id) => {
   let completed = class_list.value.includes('complete');
   (async function editTask() {
     const response = await fetch(`/items/${id}`, {
