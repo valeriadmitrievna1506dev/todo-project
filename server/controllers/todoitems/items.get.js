@@ -81,6 +81,7 @@ const listVariative = async (req, res) => {
     });
     res.status(200).send(todoItems);
   } catch (err) {
+    console.log(err.message);
     res.status(400).send(err.message);
   }
 };

@@ -1,20 +1,28 @@
 async function GetItems(order, completeness) {
-  tasksPlace.innerHTML = await '';
-  dynamicTasks = []
-  const response = await fetch('/items?' + new URLSearchParams({
-    order: order,
-    done: completeness
-  }), {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
-  if (response.ok) {
-    const items = await response.json();
-    if (items.length > 0) {
-      await createTasks(items);
-    } else {
-      tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
+  try {
+    tasksPlace.innerHTML = await '';
+    dynamicTasks = [];
+    const response = await fetch(
+      '/items?' +
+        new URLSearchParams({
+          order: order,
+          done: completeness,
+        }),
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    if (response.ok) {
+      const items = await response.json();
+      if (items.length > 0) {
+        await createTasks(items);
+      } else {
+        tasksPlace.innerHTML = '<p>Задач нет. Создайте новую!</p>';
+      }
     }
+  } catch (error) {
+    console.log(error.message);
   }
 }
 
@@ -30,7 +38,7 @@ async function AddTask(itemText) {
     if (dynamicTasks.length === 0) {
       tasksPlace.innerHTML = await '';
     }
-    checkFilters()
+    checkFilters();
   }
 }
 
@@ -40,7 +48,7 @@ async function deleteTask(id) {
     headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok === true) {
-    checkFilters()
+    checkFilters();
   }
 }
 
@@ -58,7 +66,7 @@ const editTaskText = async (text, id) => {
           body: JSON.stringify({ text: taskText.trim() }),
         });
         if (response.ok) {
-          checkFilters()
+          checkFilters();
         }
         editModal.classList.remove('visible');
       })();
@@ -77,8 +85,7 @@ const editTaskDone = async (class_list, id) => {
       body: JSON.stringify({ done: !completed }),
     });
     if (response.ok) {
-      checkFilters()
+      checkFilters();
     }
   })();
 };
-
